@@ -1,2 +1,0 @@
-include ':app', ':view'
-rootProject.name='Investment Simulator'
