@@ -63,4 +63,5 @@ object AndroidTestDependency {
 
 object Module {
     const val featureCore = ":feature_core"
+    const val featureSimulator = ":feature_simulator"
 }

@@ -7,6 +7,7 @@ plugins {
 
 android {
     compileSdkVersion(Android.compileSdkVersion)
+    buildToolsVersion(Android.buildToolsVersion)
     defaultConfig {
         applicationId = Android.applicationId
         minSdkVersion(Android.minSdkVersion)
@@ -23,8 +24,8 @@ android {
 }
 
 dependencies {
-    implementation(project(Module.featureCore))
-    implementation(Dependency.appCompat)
-    implementation(Dependency.constraintLayout)
     kapt(Dependency.daggerCompiler)
+    implementation(project(Module.featureCore))
+    implementation(project(Module.featureSimulator))
+    implementation(Dependency.constraintLayout)
 }
