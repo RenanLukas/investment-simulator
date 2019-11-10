@@ -13,8 +13,15 @@ android {
 }
 
 dependencies {
-    implementation(Dependency.kotlinStdLib)
-    implementation(Dependency.appCompat)
     api(Dependency.dagger)
     kapt(Dependency.daggerCompiler)
+    implementation(Dependency.kotlinStdLib)
+    implementation(Dependency.appCompat)
+    implementation(Dependency.okHttp)
+    implementation(Dependency.okHttpLoggingInterceptor)
+    implementation(Dependency.retrofit)
+    implementation(Dependency.retrofitConverterGson)
+    implementation(Dependency.retrofitAdapterRxJava)
+    implementation(Dependency.rxJava)
+    implementation(Dependency.rxAndroid)
 }
