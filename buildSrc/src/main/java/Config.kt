@@ -24,6 +24,7 @@ object Dependency {
     private const val retrofitVersion = "2.5.0"
     private const val rxJavaVersion = "2.2.6"
     private const val rxAndroidVersion = "2.1.0"
+    private const val daggerVersion = "2.25.2"
 
     const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
@@ -35,6 +36,8 @@ object Dependency {
     const val retrofitAdapterRxJava = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     const val rxJava = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    const val dagger = "com.google.dagger:dagger:$daggerVersion"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
 }
 
 object TestDependency {
@@ -56,4 +59,8 @@ object AndroidTestDependency {
     const val espresso = "androidx.test.espresso:espresso-core:$espressoCoreVersion"
     const val testRunnerVersion = "androidx.test:runner:$androidxTestVersion"
     const val testRulesVersion = "androidx.test:rules:$androidxTestVersion"
+}
+
+object Module {
+    const val featureCore = ":feature_core"
 }

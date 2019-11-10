@@ -1,0 +1,4 @@
+include ":app"
+include ":buildSrc"
+include ":feature_core"
+rootProject.name="Investment Simulator"

@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
+    kotlin("kapt")
 }
 
 android {
@@ -22,7 +23,8 @@ android {
 }
 
 dependencies {
+    implementation(project(Module.featureCore))
     implementation(Dependency.appCompat)
     implementation(Dependency.constraintLayout)
-    implementation(Dependency.kotlinStdLib)
+    kapt(Dependency.daggerCompiler)
 }
