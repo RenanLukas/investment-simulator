@@ -11,13 +11,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 class NetworkModule {
 
     @Provides
-    @Singleton
     @Named(GSON_CONVERTER_FACTORY)
     fun provideGsonConverterFactory(): Converter.Factory =
         GsonConverterFactory.create(GsonBuilder().apply {
@@ -26,14 +24,12 @@ class NetworkModule {
         }.create())
 
     @Provides
-    @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
     @Provides
-    @Singleton
     fun provideOkHttp(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder().apply {
             if (BuildConfig.DEBUG) {
@@ -42,7 +38,6 @@ class NetworkModule {
         }.build()
 
     @Provides
-    @Singleton
     fun provideRetrofit(
         baseUrl: BaseUrl,
         okHttpClient: OkHttpClient,
@@ -56,7 +51,6 @@ class NetworkModule {
         }.build()
 
     @Provides
-    @Singleton
     fun provideBaseURL(): BaseUrl =
         BaseUrl(" https://api-simulator-calc.easynvest.com.br/")
 }

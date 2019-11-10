@@ -15,6 +15,7 @@ android {
 
 dependencies {
     kapt(Dependency.daggerCompiler)
-    implementation(project(Module.featureCore))
+    api(project(Module.featureCore))
     implementation(Dependency.constraintLayout)
+    implementation(Dependency.lifecycleExtensions)
 }

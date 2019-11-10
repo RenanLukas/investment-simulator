@@ -26,7 +26,7 @@ class HomeActivity : DaggerActivity() {
     private fun setupContainer() {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container, CreateSimulationFragment())
+            .replace(R.id.container, CreateSimulationFragment.newInstance())
             .commit()
     }
 }

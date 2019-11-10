@@ -19,9 +19,9 @@ dependencies {
     api(Dependency.retrofit)
     api(Dependency.rxJava)
     api(Dependency.rxAndroid)
+    api(Dependency.okHttp)
+    api(Dependency.okHttpLoggingInterceptor)
     implementation(Dependency.kotlinStdLib)
-    implementation(Dependency.okHttp)
-    implementation(Dependency.okHttpLoggingInterceptor)
     implementation(Dependency.retrofitConverterGson)
     implementation(Dependency.retrofitAdapterRxJava)
 }

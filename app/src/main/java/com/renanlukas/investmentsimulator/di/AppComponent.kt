@@ -6,7 +6,7 @@ import com.renanlukas.investmentsimulator.presentation.HomeActivity
 import dagger.Component
 
 @Component(dependencies = [CoreComponent::class])
-@FeatureScope
+//@FeatureScope
 interface AppComponent {
     fun inject(homeActivity: HomeActivity)
 }

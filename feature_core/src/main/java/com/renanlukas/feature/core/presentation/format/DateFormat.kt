@@ -1,4 +1,4 @@
-package com.renanlukas.feature.core.format
+package com.renanlukas.feature.core.presentation.format
 
 import java.text.SimpleDateFormat
 import javax.inject.Inject

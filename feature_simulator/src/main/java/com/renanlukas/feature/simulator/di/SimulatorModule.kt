@@ -10,7 +10,6 @@ import javax.inject.Singleton
 class SimulatorModule {
 
     @Provides
-    @Singleton
     fun provideSimulationService(retrofit: Retrofit): SimulationService =
         retrofit.create(SimulationService::class.java)
 }
