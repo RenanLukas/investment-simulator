@@ -17,5 +17,4 @@ dependencies {
     kapt(Dependency.daggerCompiler)
     api(project(Module.featureCore))
     implementation(Dependency.constraintLayout)
-    implementation(Dependency.lifecycleExtensions)
 }

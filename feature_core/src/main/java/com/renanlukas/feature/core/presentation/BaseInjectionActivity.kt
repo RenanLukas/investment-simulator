@@ -3,7 +3,7 @@ package com.renanlukas.feature.core.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class DaggerActivity : AppCompatActivity() {
+abstract class BaseInjectionActivity : AppCompatActivity() {
 
     abstract fun inject()
 

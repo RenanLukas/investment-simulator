@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginDefault">12dp</dimen>
+    <dimen name="marginBig">24dp</dimen>
+    <dimen name="radiusDefault">24dp</dimen>
+</resources>

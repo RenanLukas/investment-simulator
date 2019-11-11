@@ -1,7 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:fillViewport="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginDefault"
+        android:layout_marginBottom="@dimen/marginDefault">
+
+        <com.renanlukas.feature.core.ui.TitleInputView
+            android:id="@+id/simulationAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/marginDefault"
+            android:paddingRight="@dimen/marginDefault"
+            app:layout_constraintBottom_toTopOf="@+id/simulationMaturityDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.renanlukas.feature.core.ui.TitleInputView
+            android:id="@+id/simulationMaturityDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/marginDefault"
+            android:paddingRight="@dimen/marginDefault"
+            app:layout_constraintBottom_toTopOf="@+id/simulationCdiInvestment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulationAmount" />
+
+        <com.renanlukas.feature.core.ui.TitleInputView
+            android:id="@+id/simulationCdiInvestment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/marginDefault"
+            android:paddingRight="@dimen/marginDefault"
+            app:layout_constraintBottom_toTopOf="@+id/simulateButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulationMaturityDate" />
+
+        <com.renanlukas.feature.core.ui.MainButtonView
+            android:id="@+id/simulateButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginBig"
+            android:layout_marginRight="@dimen/marginBig"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulationCdiInvestment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

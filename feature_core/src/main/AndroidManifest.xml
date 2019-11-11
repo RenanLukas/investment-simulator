@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.renanlukas.investmentsimulator.feature.core" />
+<manifest package="com.renanlukas.investmentsimulator.feature.core" />

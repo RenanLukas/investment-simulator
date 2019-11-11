@@ -2,12 +2,12 @@ package com.renanlukas.investmentsimulator.presentation
 
 import android.os.Bundle
 import com.renanlukas.feature.core.di.CoreInjectHelper
-import com.renanlukas.feature.core.presentation.DaggerActivity
+import com.renanlukas.feature.core.presentation.BaseInjectionActivity
 import com.renanlukas.feature.simulator.presentation.create.CreateSimulationFragment
 import com.renanlukas.investmentsimulator.R
 import com.renanlukas.investmentsimulator.di.DaggerAppComponent
 
-class HomeActivity : DaggerActivity() {
+class HomeActivity : BaseInjectionActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

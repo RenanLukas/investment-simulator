@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    kotlin("android.extensions")
     kotlin("kapt")
 }
 
@@ -21,6 +22,7 @@ dependencies {
     api(Dependency.rxAndroid)
     api(Dependency.okHttp)
     api(Dependency.okHttpLoggingInterceptor)
+    api(Dependency.lifecycleExtensions)
     implementation(Dependency.kotlinStdLib)
     implementation(Dependency.retrofitConverterGson)
     implementation(Dependency.retrofitAdapterRxJava)

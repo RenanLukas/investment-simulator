@@ -14,7 +14,7 @@ class CreateSimulationViewModelFactory @Inject constructor(
         return if (modelClass.isAssignableFrom(CreateSimulationViewModel::class.java)) {
             CreateSimulationViewModel(getSimulation) as T
         } else {
-            throw IllegalArgumentException("ViewModel Not Found")
+            throw IllegalArgumentException("ViewModel not found")
         }
     }
 }

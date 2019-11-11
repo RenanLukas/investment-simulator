@@ -22,8 +22,8 @@ object Dependency {
     private const val constraintLayoutVersion = "1.1.3"
     private const val okHttpVersion = "3.12.1"
     private const val retrofitVersion = "2.5.0"
-    private const val rxJavaVersion = "2.2.6"
-    private const val rxAndroidVersion = "2.1.0"
+    private const val rxJavaVersion = "2.2.14"
+    private const val rxAndroidVersion = "2.1.1"
     private const val daggerVersion = "2.25.2"
     private const val lifecycleExtensionsVersion = "2.1.0"
 
