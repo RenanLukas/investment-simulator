@@ -1,14 +1,17 @@
 package com.renanlukas.investmentsimulator.presentation
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.renanlukas.feature.core.di.CoreInjectHelper
+import com.renanlukas.feature.core.navigator.Navigator
 import com.renanlukas.feature.core.presentation.BaseInjectionActivity
+import com.renanlukas.feature.core.ui.into
+import com.renanlukas.feature.core.ui.replace
 import com.renanlukas.feature.simulator.presentation.create.CreateSimulationFragment
 import com.renanlukas.investmentsimulator.R
 import com.renanlukas.investmentsimulator.di.DaggerAppComponent
 
-class HomeActivity : BaseInjectionActivity() {
-
+class HomeActivity : BaseInjectionActivity(), Navigator {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -23,10 +26,11 @@ class HomeActivity : BaseInjectionActivity() {
             .inject(this)
     }
 
+    override fun navigate(fragment: Fragment) {
+        this replace fragment into R.id.container
+    }
+
     private fun setupContainer() {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, CreateSimulationFragment.newInstance())
-            .commit()
+        this replace CreateSimulationFragment.newInstance() into R.id.container
     }
 }

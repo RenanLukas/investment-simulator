@@ -1,7 +1,10 @@
 package com.renanlukas.feature.core.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 
@@ -9,13 +12,27 @@ abstract class BaseViewModelFragment : BaseInjectionFragment() {
 
     abstract val viewModel: BaseViewModel
 
-    inline fun <reified T : BaseViewModel> viewModel(
+    @LayoutRes
+    abstract fun layoutResource(): Int
+
+    abstract fun observeViewState()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View =
+        inflater.inflate(layoutResource(), container, false)
+
+
+    inline fun <reified VM : BaseViewModel> viewModel(
         crossinline factory: () -> ViewModelProvider.Factory
-    ): Lazy<T> =
-        lazy { ViewModelProviders.of(this, factory()).get(T::class.java) }
+    ): Lazy<VM> =
+        lazy { ViewModelProviders.of(this, factory()).get(VM::class.java) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeViewState()
         viewModel.initialize()
     }
 }

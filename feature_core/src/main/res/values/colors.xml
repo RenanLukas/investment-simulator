@@ -7,7 +7,7 @@
 
     <color name="backgroundDefault">#FFFFFF</color>
     <color name="hintDefault">#979797</color>
-    <color name="textDefault">#737674</color>
+    <color name="textDefault">#000000</color>
     <color name="textAccent">#FFFFFF</color>
     <color name="disabledDefault">#C3CAC9</color>
     <color name="enabledDefault">@color/accent</color>

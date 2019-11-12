@@ -2,5 +2,8 @@
 <resources>
     <dimen name="marginDefault">12dp</dimen>
     <dimen name="marginBig">24dp</dimen>
+
     <dimen name="radiusDefault">24dp</dimen>
+
+    <dimen name="fontSizeTitle">18sp</dimen>
 </resources>

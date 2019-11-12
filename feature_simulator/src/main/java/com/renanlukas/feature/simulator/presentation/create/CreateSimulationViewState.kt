@@ -1,25 +1,19 @@
 package com.renanlukas.feature.simulator.presentation.create
 
 import androidx.annotation.StringRes
+import com.renanlukas.feature.core.ui.TitleInputView
 
 sealed class CreateSimulationViewState {
 
-    data class CreateSimulationInitial(
-        @StringRes val amountTitle: Int,
-        @StringRes val amountHint: Int,
-        val amountMandatory: Boolean,
-        @StringRes val maturityDateTitle: Int,
-        @StringRes val maturityDateHint: Int,
-        val maturityDateMandatory: Boolean,
-        @StringRes val cdiPercentageTitle: Int,
-        @StringRes val cdiPercentageHint: Int,
-        val cdiPercentageMandatory: Boolean,
-        @StringRes val actionButtonLabel: Int
+    data class Initial(
+        val amountViewEntity: TitleInputView.Entity,
+        val maturityViewEntity: TitleInputView.Entity,
+        val cdiViewEntity: TitleInputView.Entity,
+        @StringRes val actionButtonLabel: Int,
+        val enableAction: Boolean
     ) : CreateSimulationViewState()
 
-    data class UpdateSimulation(val isSimulateEnabled: Boolean) : CreateSimulationViewState()
+    data class SimulationChanged(val enableAction: Boolean) : CreateSimulationViewState()
 
     object Loading : CreateSimulationViewState()
-
-    object OverviewSimulation
 }
