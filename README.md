@@ -2,6 +2,8 @@
 
 Implementação do aplicativo proposto [neste repositório](https://github.com/easynvest/teste-android).
 
+![Alt text](create_simulation.png?raw=true)
+
 ## Módulos
 **app**: Activity única e navegação.  
 **feature_core**:  Componentes e dependências comuns aos módulos de feature.   
