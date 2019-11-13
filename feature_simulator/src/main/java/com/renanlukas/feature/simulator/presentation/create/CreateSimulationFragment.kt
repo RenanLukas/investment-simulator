@@ -3,7 +3,7 @@ package com.renanlukas.feature.simulator.presentation.create
 import androidx.lifecycle.Observer
 import com.renanlukas.feature.core.di.CoreInjectHelper
 import com.renanlukas.feature.core.presentation.BaseViewModelFragment
-import com.renanlukas.feature.core.ui.MainButtonView
+import com.renanlukas.feature.core.ui.*
 import com.renanlukas.feature.simulator.R
 import com.renanlukas.feature.simulator.di.DaggerSimulatorComponent
 import com.renanlukas.feature.simulator.presentation.create.CreateSimulationViewState.*
@@ -35,7 +35,8 @@ class CreateSimulationFragment : BaseViewModelFragment() {
                 is Initial -> buildInitial(state)
                 is SimulationChanged -> buildSimulationChanged(state)
                 is Loading -> buildLoading()
-            }
+                is Error -> buildError(state)
+            }.exhaustive()
         })
     }
 
@@ -58,7 +59,12 @@ class CreateSimulationFragment : BaseViewModelFragment() {
     }
 
     private fun buildLoading() {
+        loading.show()
+    }
 
+    private fun buildError(state: Error) {
+        loading.hide()
+        activity?.snackbar(state.message)
     }
 
     companion object {

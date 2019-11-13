@@ -16,4 +16,6 @@ sealed class CreateSimulationViewState {
     data class SimulationChanged(val enableAction: Boolean) : CreateSimulationViewState()
 
     object Loading : CreateSimulationViewState()
+
+    data class Error(val message: String) : CreateSimulationViewState()
 }

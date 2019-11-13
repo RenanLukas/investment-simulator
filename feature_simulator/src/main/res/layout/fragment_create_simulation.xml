@@ -1,61 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/loading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/backgroundLoading"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginDefault"
-        android:layout_marginBottom="@dimen/marginDefault"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.renanlukas.feature.core.ui.TitleInputView
-            android:id="@+id/simulationAmount"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/marginDefault"
-            android:paddingRight="@dimen/marginDefault"
-            app:layout_constraintBottom_toTopOf="@+id/simulationMaturityDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="@dimen/marginDefault"
+            android:layout_marginBottom="@dimen/marginDefault"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
-        <com.renanlukas.feature.core.ui.TitleInputView
-            android:id="@+id/simulationMaturityDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/marginDefault"
-            android:paddingRight="@dimen/marginDefault"
-            app:layout_constraintBottom_toTopOf="@+id/simulationCdiInvestment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/simulationAmount" />
+            <com.renanlukas.feature.core.ui.TitleInputView
+                android:id="@+id/simulationAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/marginDefault"
+                android:paddingRight="@dimen/marginDefault"
+                app:layout_constraintBottom_toTopOf="@+id/simulationMaturityDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.renanlukas.feature.core.ui.TitleInputView
-            android:id="@+id/simulationCdiInvestment"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/marginDefault"
-            android:paddingRight="@dimen/marginDefault"
-            app:layout_constraintBottom_toTopOf="@+id/simulateButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/simulationMaturityDate" />
+            <com.renanlukas.feature.core.ui.TitleInputView
+                android:id="@+id/simulationMaturityDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/marginDefault"
+                android:paddingRight="@dimen/marginDefault"
+                app:layout_constraintBottom_toTopOf="@+id/simulationCdiInvestment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/simulationAmount" />
 
-        <com.renanlukas.feature.core.ui.MainButtonView
-            android:id="@+id/simulateButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/marginBig"
-            android:layout_marginRight="@dimen/marginBig"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/simulationCdiInvestment" />
+            <com.renanlukas.feature.core.ui.TitleInputView
+                android:id="@+id/simulationCdiInvestment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/marginDefault"
+                android:paddingRight="@dimen/marginDefault"
+                app:layout_constraintBottom_toTopOf="@+id/simulateButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/simulationMaturityDate" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <com.renanlukas.feature.core.ui.MainButtonView
+                android:id="@+id/simulateButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marginBig"
+                android:layout_marginRight="@dimen/marginBig"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/simulationCdiInvestment" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

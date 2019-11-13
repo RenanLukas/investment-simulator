@@ -26,10 +26,12 @@ object Dependency {
     private const val rxAndroidVersion = "2.1.1"
     private const val daggerVersion = "2.25.2"
     private const val lifecycleExtensionsVersion = "2.1.0"
+    private const val androidMaterialVersion = "1.0.0"
 
     const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion"
+    const val androidMaterial = "com.google.android.material:material:$androidMaterialVersion"
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     const val okHttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"

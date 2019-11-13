@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Simulator" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Simulator" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="android:colorBackground">@color/backgroundDefault</item>
-        <item name="android:textColorHint">@color/hintDefault</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:textColorHint">@color/hint</item>
     </style>
 
     <style name="TitleInput" parent="Theme.Simulator" />
@@ -24,7 +24,7 @@
         <item name="android:textColor">@color/textDefault</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
-        <item name="colorControlNormal">@color/hintDefault</item>
+        <item name="colorControlNormal">@color/hint</item>
     </style>
 
     <style name="MainButton">

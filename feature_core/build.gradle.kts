@@ -24,6 +24,7 @@ dependencies {
     api(Dependency.okHttpLoggingInterceptor)
     api(Dependency.lifecycleExtensions)
     implementation(Dependency.constraintLayout)
+    implementation(Dependency.androidMaterial)
     implementation(Dependency.kotlinStdLib)
     implementation(Dependency.retrofitConverterGson)
     implementation(Dependency.retrofitAdapterRxJava)
