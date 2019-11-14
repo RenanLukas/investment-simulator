@@ -11,21 +11,12 @@ import com.renanlukas.feature.simulator.presentation.overview.OverviewSimulation
 import javax.inject.Inject
 
 class OverviewSimulationViewModel @Inject constructor(
-    private val currencyFormat: CurrencyFormat
+    private val currencyFormat: CurrencyFormat,
+    private val simulation: Simulation
 ) : BaseViewModel() {
 
     private val mutableViewState: MutableLiveData<OverviewSimulationViewState> = MutableLiveData()
     val viewState: LiveData<OverviewSimulationViewState> = mutableViewState
-
-    private lateinit var simulation: Simulation
-
-    //TODO Inject on VM constructor
-    fun injectSimulation(simulation: Simulation?) {
-        if (simulation == null) {
-            throw IllegalArgumentException("Simulation argument is mandatory")
-        }
-        this.simulation = simulation
-    }
 
     override fun initialize() {
         val totalProfitHighlight = currencyFormat.format(simulation.grossAmountProfit)

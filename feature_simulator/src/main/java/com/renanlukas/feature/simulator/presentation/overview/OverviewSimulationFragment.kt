@@ -10,6 +10,7 @@ import com.renanlukas.feature.core.ui.MainButtonView
 import com.renanlukas.feature.core.ui.colorText
 import com.renanlukas.feature.simulator.R
 import com.renanlukas.feature.simulator.di.create.DaggerSimulatorComponent
+import com.renanlukas.feature.simulator.di.overview.DaggerOverviewSimulationComponent
 import com.renanlukas.feature.simulator.domain.Simulation
 import com.renanlukas.feature.simulator.presentation.overview.OverviewSimulationViewState.Initial
 import kotlinx.android.synthetic.main.fragment_overview_simulation.*
@@ -28,16 +29,16 @@ class OverviewSimulationFragment : BaseViewModelFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO Inject on VM constructor
-        arguments?.let { viewModel.injectSimulation(it.getParcelable(ARGUMENT_SIMULATION)) }
         setupSimulationResultsRecyclerView()
     }
 
     override fun inject() {
         activity?.let {
-            DaggerSimulatorComponent
+            DaggerOverviewSimulationComponent
                 .builder()
                 .coreComponent(CoreInjectHelper.provideCoreComponent(it.applicationContext))
+                .simulation(arguments?.getParcelable(ARGUMENT_SIMULATION)
+                    ?: throw NullPointerException("Simulation argument is mandatory"))
                 .build()
                 .inject(this)
         }

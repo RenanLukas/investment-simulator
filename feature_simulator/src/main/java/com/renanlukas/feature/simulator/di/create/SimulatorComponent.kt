@@ -12,6 +12,4 @@ import dagger.Component
 )
 internal interface SimulatorComponent {
     fun inject(createSimulationFragment: CreateSimulationFragment)
-
-    fun inject(overviewSimulationFragment: OverviewSimulationFragment)
 }

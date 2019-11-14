@@ -9,8 +9,8 @@ import androidx.core.content.ContextCompat
 
 
 fun TextView.colorText(fullText: String, textToColor: String, @ColorRes color: Int) {
-    val spannable = SpannableString(text)
-    val indexTextToColor = text.indexOf(textToColor)
+    val spannable = SpannableString(fullText)
+    val indexTextToColor = fullText.indexOf(textToColor)
     spannable.setSpan(
         ForegroundColorSpan(ContextCompat.getColor(context, color)),
         indexTextToColor,
