@@ -9,6 +9,8 @@ Implementação do aplicativo proposto [neste repositório](https://github.com/e
 **feature_core**:  Componentes e dependências comuns aos módulos de feature.   
 **feature_simulator**:  Feature de simulação de investimento.
 
+![Alt text](module_dependency.png?raw=true)
+
 ## Principais dependências
 * [Kotlin](https://kotlinlang.org/docs/reference/using-gradle.html)
 * [Dagger](https://github.com/google/dagger)
