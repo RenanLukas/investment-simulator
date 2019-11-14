@@ -8,8 +8,8 @@ import com.renanlukas.feature.core.rx.withIOScheduler
 import com.renanlukas.feature.core.ui.TitleInputView
 import com.renanlukas.feature.simulator.R
 import com.renanlukas.feature.simulator.domain.GetSimulation
-import com.renanlukas.feature.simulator.presentation.create.CreateSimulationViewState.Initial
-import com.renanlukas.feature.simulator.presentation.create.CreateSimulationViewState.Loading
+import com.renanlukas.feature.simulator.presentation.create.CreateSimulationViewState.*
+import com.renanlukas.feature.simulator.presentation.overview.OverviewSimulationNavigationEvent
 import javax.inject.Inject
 
 class CreateSimulationViewModel @Inject constructor(
@@ -41,7 +41,7 @@ class CreateSimulationViewModel @Inject constructor(
                     isMandatory = true
                 ),
                 actionButtonLabel = R.string.simulator_investment_action,
-                enableAction = false
+                enableAction = true
             )
         )
     }
@@ -54,7 +54,8 @@ class CreateSimulationViewModel @Inject constructor(
         ).withIOScheduler()
             .doOnSubscribe { mutableViewState.postValue(Loading) }
             .subscribe({
-//                mutableViewState.postValue()
+                navigationSingleLiveEvent.postValue(OverviewSimulationNavigationEvent(it))
             }, {
+                mutableViewState.postValue(Error(R.string.simulator_investment_error))
             })
 }

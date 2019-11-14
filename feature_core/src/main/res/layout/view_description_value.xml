@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/marginDefault"
+    android:paddingLeft="@dimen/marginDefault"
+    android:paddingEnd="@dimen/marginDefault"
+    android:paddingRight="@dimen/marginDefault">
+
+    <TextView
+        android:id="@+id/descriptionText"
+        style="@style/DescriptionValue.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Valor aplicado inicialmente Valor aplicado inicialmente Valor aplicado inicialmente Valor aplicado inicialmente" />
+
+    <TextView
+        android:id="@+id/valueText"
+        style="@style/DescriptionValue.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="R$ 1.000,00 R$ 1.000,00 R$ 1.000,00 R$ 1.000,00 R$ 1.000,00 R$ 1.000,00 R$ 1.000,00 R$ 1.000,00 " />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

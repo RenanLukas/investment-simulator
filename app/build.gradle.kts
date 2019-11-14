@@ -6,15 +6,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Android.compileSdkVersion)
-    buildToolsVersion(Android.buildToolsVersion)
+    compileSdkVersion(App.compileSdkVersion)
+    buildToolsVersion(App.buildToolsVersion)
     defaultConfig {
-        applicationId = Android.applicationId
-        minSdkVersion(Android.minSdkVersion)
-        targetSdkVersion(Android.targetSdkVersion)
-        versionCode = Android.versionCode
-        versionName = Android.versionName
-        testInstrumentationRunner = Android.testRunner
+        applicationId = App.applicationId
+        minSdkVersion(App.minSdkVersion)
+        targetSdkVersion(App.targetSdkVersion)
+        versionCode = App.versionCode
+        versionName = App.versionName
+        testInstrumentationRunner = App.testRunner
     }
     buildTypes {
         getByName("release") {

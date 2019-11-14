@@ -4,6 +4,5 @@ import com.renanlukas.feature.core.data.NetworkModule
 import dagger.Component
 import javax.inject.Singleton
 
-//@Singleton
 @Component(modules = [NetworkModule::class])
 interface CoreComponent

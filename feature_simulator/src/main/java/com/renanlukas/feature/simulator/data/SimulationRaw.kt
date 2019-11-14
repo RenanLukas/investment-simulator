@@ -5,25 +5,25 @@ import java.util.*
 
 data class SimulationRaw(
     val investmentParameter: InvestmentParameterRaw?,
-    val grossAmount: Double?,
-    val taxesAmount: Double?,
-    val netAmount: Double?,
-    val grossAmountProfit: Double?,
-    val netAmountProfit: Double?,
-    val annualGrossRateProfit: Double?,
-    val monthlyGrossRateProfit: Double?,
+    val grossAmount: BigDecimal?,
+    val taxesAmount: BigDecimal?,
+    val netAmount: BigDecimal?,
+    val grossAmountProfit: BigDecimal?,
+    val netAmountProfit: BigDecimal?,
+    val annualGrossRateProfit: BigDecimal?,
+    val monthlyGrossRateProfit: BigDecimal?,
     val dailyGrossRateProfit: BigDecimal?,
-    val taxesRate: Double?,
-    val rateProfit: Double?,
-    val annualNetRateProfit: Double?
+    val taxesRate: BigDecimal?,
+    val rateProfit: BigDecimal?,
+    val annualNetRateProfit: BigDecimal?
 )
 
 data class InvestmentParameterRaw(
-    val investedAmount: Double?,
-    val yearlyInterestRate: Double?,
+    val investedAmount: BigDecimal?,
+    val yearlyInterestRate: BigDecimal?,
     val maturityTotalDays: Int?,
     val maturityBusinessDays: Int?,
     val maturityDate: Date?,
-    val rate: Double?,
+    val rate: BigDecimal?,
     val isTaxFree: Boolean?
 )

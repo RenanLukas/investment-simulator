@@ -1,4 +1,4 @@
-package com.renanlukas.feature.simulator.di
+package com.renanlukas.feature.simulator.di.create
 
 import com.renanlukas.feature.core.data.NetworkModule
 import com.renanlukas.feature.core.di.CoreComponent

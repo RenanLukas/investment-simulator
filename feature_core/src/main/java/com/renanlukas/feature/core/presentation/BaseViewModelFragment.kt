@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 
@@ -24,15 +25,21 @@ abstract class BaseViewModelFragment : BaseInjectionFragment() {
     ): View =
         inflater.inflate(layoutResource(), container, false)
 
-
-    inline fun <reified VM : BaseViewModel> viewModel(
-        crossinline factory: () -> ViewModelProvider.Factory
-    ): Lazy<VM> =
-        lazy { ViewModelProviders.of(this, factory()).get(VM::class.java) }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewState()
         viewModel.initialize()
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.navigationSingleLiveEvent.observe(
+            viewLifecycleOwner, Observer { navigate(it) }
+        )
+    }
+
+    inline fun <reified VM : BaseViewModel> viewModel(
+        crossinline factory: () -> ViewModelProvider.Factory
+    ): Lazy<VM> =
+        lazy { ViewModelProviders.of(this, factory()).get(VM::class.java) }
 }

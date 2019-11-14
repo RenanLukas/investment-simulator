@@ -5,7 +5,7 @@ import com.renanlukas.feature.core.di.CoreInjectHelper
 import com.renanlukas.feature.core.presentation.BaseViewModelFragment
 import com.renanlukas.feature.core.ui.*
 import com.renanlukas.feature.simulator.R
-import com.renanlukas.feature.simulator.di.DaggerSimulatorComponent
+import com.renanlukas.feature.simulator.di.create.DaggerSimulatorComponent
 import com.renanlukas.feature.simulator.presentation.create.CreateSimulationViewState.*
 import kotlinx.android.synthetic.main.fragment_create_simulation.*
 import javax.inject.Inject
@@ -45,16 +45,19 @@ class CreateSimulationFragment : BaseViewModelFragment() {
             simulationAmount.bind(amountViewEntity)
             simulationMaturityDate.bind(maturityViewEntity)
             simulationCdiInvestment.bind(cdiViewEntity)
-            simulateButton.bind(MainButtonView.Entity(actionButtonLabel)) { viewModel.onSimulate() }
+            simulateButton.bind(MainButtonView.Entity(actionButtonLabel)) {
+                activity?.hideKeyboard()
+                viewModel.onSimulate()
+            }
         }
-        toggleSimulateButton(state.enableAction)
+        updateSimulateButton(state.enableAction)
     }
 
     private fun buildSimulationChanged(update: SimulationChanged) {
-        toggleSimulateButton(update.enableAction)
+        updateSimulateButton(update.enableAction)
     }
 
-    private fun toggleSimulateButton(enable: Boolean) {
+    private fun updateSimulateButton(enable: Boolean) {
         with(simulateButton) { if (enable) enable() else disable() }
     }
 
@@ -64,7 +67,7 @@ class CreateSimulationFragment : BaseViewModelFragment() {
 
     private fun buildError(state: Error) {
         loading.hide()
-        activity?.snackbar(state.message)
+        activity?.snackbar(getString(state.message))
     }
 
     companion object {

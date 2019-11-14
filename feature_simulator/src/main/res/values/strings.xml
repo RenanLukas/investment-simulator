@@ -6,9 +6,10 @@
     <string name="simulator_investment_cdi_percentage_title">Qual o percentual do CDI do investimento?</string>
     <string name="simulator_investment_cdi_percentage_hint">100%</string>
     <string name="simulator_investment_action">Simular</string>
+    <string name="simulator_investment_error">Ops! Ocorreu um erro :(</string>
 
     <string name="overview_simulation_title">Resultado da simulação</string>
-    <string name="overview_simulation_total_profit">Rendimento total de %1$s</string>
+    <string name="overview_simulation_total_profit">Rendimento total de </string>
     <string name="overview_simulation_initial_amount">Valor aplicado inicialmente</string>
     <string name="overview_simulation_gross_amount">Valor bruto do investimento</string>
     <string name="overview_simulation_profit_amount">Valor do rendimento</string>
@@ -20,4 +21,5 @@
     <string name="overview_simulation_cdi_percentage">Percentual do CDI do investimento</string>
     <string name="overview_simulation_annual_gross_rate_profit">Rentabilidade anual</string>
     <string name="overview_simulation_rate_profit">Rentabilidade no período</string>
+    <string name="overview_simulation_action">Simular novamente</string>
 </resources>

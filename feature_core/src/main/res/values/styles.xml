@@ -35,4 +35,22 @@
         <item name="android:paddingBottom">@dimen/marginDefault</item>
         <item name="android:background">@drawable/selector_main_button</item>
     </style>
+
+    <style name="DescriptionValue.Text" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/textDefault</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="SmallText" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:color">@color/textDefault</item>
+    </style>
+
+    <style name="AmountText" parent="TextAppearance.AppCompat.Display2">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:color">@color/textDefault</item>
+    </style>
+
 </resources>

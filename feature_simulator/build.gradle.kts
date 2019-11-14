@@ -6,10 +6,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Android.compileSdkVersion)
+    compileSdkVersion(App.compileSdkVersion)
     defaultConfig {
-        minSdkVersion(Android.minSdkVersion)
-        targetSdkVersion(Android.targetSdkVersion)
+        minSdkVersion(App.minSdkVersion)
+        targetSdkVersion(App.targetSdkVersion)
     }
 }
 
@@ -17,4 +17,5 @@ dependencies {
     kapt(Dependency.daggerCompiler)
     api(project(Module.featureCore))
     implementation(Dependency.constraintLayout)
+    implementation(Dependency.recyclerView)
 }

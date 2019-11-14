@@ -17,5 +17,5 @@ sealed class CreateSimulationViewState {
 
     object Loading : CreateSimulationViewState()
 
-    data class Error(val message: String) : CreateSimulationViewState()
+    data class Error(@StringRes val message: Int) : CreateSimulationViewState()
 }

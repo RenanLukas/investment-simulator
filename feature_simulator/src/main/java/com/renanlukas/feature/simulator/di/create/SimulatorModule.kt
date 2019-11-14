@@ -1,10 +1,9 @@
-package com.renanlukas.feature.simulator.di
+package com.renanlukas.feature.simulator.di.create
 
 import com.renanlukas.feature.simulator.data.SimulationService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @Module
 class SimulatorModule {

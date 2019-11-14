@@ -6,12 +6,12 @@ object Gradle {
     val android = "com.android.tools.build:gradle:$androidGradleVersion"
 }
 
-object Android {
+object App {
     const val buildToolsVersion = "29.0.0"
     const val minSdkVersion = 16
     const val targetSdkVersion = 29
     const val compileSdkVersion = 29
-    const val applicationId = "com.btctracker"
+    const val applicationId = "com.renanlukas.investmentsimulator"
     const val versionCode = 1
     const val versionName = "1.0.0"
     const val testRunner = "android.support.test.runner.AndroidJUnitRunner"
@@ -27,6 +27,7 @@ object Dependency {
     private const val daggerVersion = "2.25.2"
     private const val lifecycleExtensionsVersion = "2.1.0"
     private const val androidMaterialVersion = "1.0.0"
+    private const val recyclerViewVersion = "1.0.0"
 
     const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
@@ -42,6 +43,7 @@ object Dependency {
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     const val dagger = "com.google.dagger:dagger:$daggerVersion"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    const val recyclerView = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 }
 
 object TestDependency {
@@ -49,18 +51,22 @@ object TestDependency {
     private const val mockitoVersion = "2.7.2"
     private const val mockitoKotlinVersion = "2.1.0"
     private const val archCoreTestingVersion = "2.0.0-alpha1"
+    private const val mockkVersion = "1.9.3"
 
     const val junit = "junit:junit:$junitVersion"
     const val mockito = "org.mockito:mockito-core:$mockitoVersion"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     const val archCoreTesting = "androidx.arch.core:core-testing:$archCoreTestingVersion"
+    const val mockk = "io.mockk:mockk:$mockkVersion"
 }
 
 object AndroidTestDependency {
     private const val espressoCoreVersion = "3.1.0"
     private const val androidxTestVersion = "1.1.0"
+    private const val baristaVersion = "3.2.0"
 
     const val espresso = "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    const val barista = "com.schibsted.spain:barista:$baristaVersion"
     const val testRunnerVersion = "androidx.test:runner:$androidxTestVersion"
     const val testRulesVersion = "androidx.test:rules:$androidxTestVersion"
 }
