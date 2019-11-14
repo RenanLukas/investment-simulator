@@ -12,6 +12,7 @@ import javax.inject.Inject
 
 class OverviewSimulationViewModel @Inject constructor(
     private val currencyFormat: CurrencyFormat,
+    private val overviewSimulationDetailsMapper: OverviewSimulationDetailsMapper,
     private val simulation: Simulation
 ) : BaseViewModel() {
 
@@ -27,7 +28,7 @@ class OverviewSimulationViewModel @Inject constructor(
                 simulationTotalProfitTextDescription = R.string.overview_simulation_total_profit,
                 simulationTotalProfitTextHighlight = totalProfitHighlight,
                 simulationTotalProfitColorHighlight = R.color.accent,
-                simulationDetails = listOf(),
+                simulationDetails = overviewSimulationDetailsMapper.map(simulation),
                 actionButtonLabel = R.string.overview_simulation_action
             )
         )

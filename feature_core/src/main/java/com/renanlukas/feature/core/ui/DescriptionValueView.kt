@@ -14,6 +14,7 @@ class DescriptionValueView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         inflate(context, R.layout.view_description_value, this)
     }
 

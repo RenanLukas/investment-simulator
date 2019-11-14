@@ -52,7 +52,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/simulationResultRecyclerView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginDefault"
             app:layout_constraintBottom_toTopOf="@+id/newSimulationButton"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +63,8 @@
             android:id="@+id/newSimulationButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginDefault"
+            android:layout_marginBottom="@dimen/marginBig"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

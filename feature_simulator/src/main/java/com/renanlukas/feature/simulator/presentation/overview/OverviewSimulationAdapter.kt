@@ -1,23 +1,16 @@
 package com.renanlukas.feature.simulator.presentation.overview
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.renanlukas.feature.core.ui.DescriptionValueView
-import com.renanlukas.feature.simulator.R
 
 class OverviewSimulationAdapter : RecyclerView.Adapter<OverviewSimulationAdapter.ViewHolder>() {
 
     private val entities: MutableList<DescriptionValueView.Entity> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.view_description_value,
-                parent
-            )
-        )
+        ViewHolder(DescriptionValueView(parent.context))
 
     override fun getItemCount(): Int = entities.size
 

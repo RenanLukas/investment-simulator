@@ -8,13 +8,18 @@ import javax.inject.Inject
 
 class OverviewSimulationViewModelFactory @Inject constructor(
     private val currencyFormat: CurrencyFormat,
+    private val overviewSimulationDetailsMapper: OverviewSimulationDetailsMapper,
     private val simulation: Simulation
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (modelClass.isAssignableFrom(OverviewSimulationViewModel::class.java)) {
-            OverviewSimulationViewModel(currencyFormat, simulation) as T
+            OverviewSimulationViewModel(
+                currencyFormat,
+                overviewSimulationDetailsMapper,
+                simulation
+            ) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")
         }

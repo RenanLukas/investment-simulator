@@ -5,11 +5,12 @@ import java.math.BigDecimal
 import java.text.NumberFormat
 import javax.inject.Inject
 
-class CurrencyFormat @Inject constructor(private val localeProvider: LocaleProvider) {
+class PercentFormat @Inject constructor(private val localeProvider: LocaleProvider) {
 
     fun format(value: BigDecimal): String =
         try {
-            NumberFormat.getCurrencyInstance(localeProvider.getLocale()).format(value)
+            val percentageAmount = value / BigDecimal(100)
+            NumberFormat.getPercentInstance(localeProvider.getLocale()).format(percentageAmount)
         } catch (throwable: Throwable) {
             DEFAULT_FORMAT
         }

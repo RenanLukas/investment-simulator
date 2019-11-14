@@ -9,7 +9,7 @@
     <string name="simulator_investment_error">Ops! Ocorreu um erro :(</string>
 
     <string name="overview_simulation_title">Resultado da simulação</string>
-    <string name="overview_simulation_total_profit">Rendimento total de </string>
+    <string name="overview_simulation_total_profit">Rendimento total de</string>
     <string name="overview_simulation_initial_amount">Valor aplicado inicialmente</string>
     <string name="overview_simulation_gross_amount">Valor bruto do investimento</string>
     <string name="overview_simulation_profit_amount">Valor do rendimento</string>

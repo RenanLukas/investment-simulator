@@ -67,7 +67,7 @@ class OverviewSimulationFragment : BaseViewModelFragment() {
             overviewSimulationTitle.text = getString(simulationTitle)
             overviewSimulationValue.text = simulationValue
             overviewSimulationTotalProfit.colorText(
-                fullText = "${getString(simulationTotalProfitTextDescription)}$simulationTotalProfitTextHighlight",
+                fullText = "${getString(simulationTotalProfitTextDescription)} $simulationTotalProfitTextHighlight",
                 textToColor = simulationTotalProfitTextHighlight,
                 color = simulationTotalProfitColorHighlight
             )

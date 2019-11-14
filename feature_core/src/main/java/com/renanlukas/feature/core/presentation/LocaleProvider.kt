@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class LocaleProvider @Inject constructor() {
 
-    fun getLocale() = Locale.getDefault()
+    fun getLocale(): Locale = Locale.getDefault()
 }
