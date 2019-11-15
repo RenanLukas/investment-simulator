@@ -33,9 +33,15 @@ Implementação do aplicativo proposto [neste repositório](https://github.com/e
 
 - Incluir animação de slide na transição entre telas de criação de simulação e detalhes de simulação;
 
+- Suportar input nas casas decimais no campo de valor do investimento.
+
 - Bloquear botão de "Simular" caso um dos campos tenha um erro;
 
-- Extrair lógica de observação dos EditTexts no CreateSimulationViewModel para classes separadas;
+- Extrair e refatorar lógica de observação dos EditTexts no CreateSimulationViewModel para classes separadas (métodos muito longos e complexos);
+
+- Adicionar efeito ripple nos botões;
+
+- Corrigir labels dos botões aparecendo com todas as letras maiúsculas
 
 - Extrair lógica de resultado da simulação (`com.renanlukas.feature.simulator.presentation.overview`) para um módulo separado;
 

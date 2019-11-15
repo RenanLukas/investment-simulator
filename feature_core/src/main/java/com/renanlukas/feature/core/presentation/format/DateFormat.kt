@@ -21,7 +21,7 @@ class DateFormat @Inject constructor(
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun isValid(date: String, pattern: Pattern): Boolean {
+    fun isInFuture(date: String, pattern: Pattern): Boolean {
         if (!date.matches(Regex(pattern.regex))) return false
         try {
             val simpleDateFormat = SimpleDateFormat(pattern.value).parse(date)
@@ -32,7 +32,14 @@ class DateFormat @Inject constructor(
     }
 
     sealed class Pattern(val value: String, val regex: String) {
-        object DayMonthYearSlash : Pattern("dd/MM/yyyy", "[0-9]{2}/[0-9]{2}/[0-9]{4}")
-        object DayMonthYearDash : Pattern("dd-MM-yyyy", "[0-9]{2}-[0-9]{2}-[0-9]{4}")
+        object DayMonthYearSlash : Pattern(
+            "dd/MM/yyyy",
+            "[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[2]{1}[0]{1}[2-9]{1}[0-9]{1}"
+        )
+
+        object DayMonthYearDash : Pattern(
+            "dd-MM-yyyy",
+            "[0-3]{1}[0-9]{1}-[0-1]{1}[0-9]{1}-[2]{1}[0]{1}[2-9]{1}[0-9]{1}"
+        )
     }
 }

@@ -78,9 +78,7 @@ class CreateSimulationViewModel @Inject constructor(
             .toInt()
 
         compositeDisposable.add(getSimulation.execute(
-            cleanAmount,
-            cleanMaturityDate,
-            cleanCdiInvestment
+            cleanAmount, cleanMaturityDate, cleanCdiInvestment
         )
             .withIOScheduler()
             .doOnSubscribe { mutableViewState.postValue(Loading) }
@@ -92,74 +90,81 @@ class CreateSimulationViewModel @Inject constructor(
         )
     }
 
+    //TODO [RenanLukas] Extract to separate class
     fun onAmountChanged(
         rawAmount: String, rawMaturityDate: String, rawCdiInvestment: String, isDeleting: Boolean
     ) {
-        val cleanAmountString = rawAmount.replace(Regex("[^\\d]"), "")
-        with(cleanAmountString) {
-            val value = if (isEmpty()) "" else currencyFormat.format(toBigDecimal())
-            mutableAmountField.postValue(
-                FieldState(
-                    value = value,
-                    showError = false
-                )
-            )
+        val amountWithoutDecimalPlaces = with(rawAmount) {
+            if (isDeleting && isNotBlank()) {
+                substring(0, rawAmount.indexOf(",0"))
+            } else {
+                replace(",00", "")
+            }
         }
-        mutableViewState.postValue(
-            SimulationChanged(
-                shouldEnableActionButton(
-                    rawAmount, rawMaturityDate, rawCdiInvestment
-                )
+
+        val cleanAmountString = with(amountWithoutDecimalPlaces) {
+            val clean = replace(Regex("[^\\d]"), "")
+            if (isDeleting) clean.dropLast(1) else clean
+        }
+        val value = when {
+            cleanAmountString.isBlank() -> ""
+            else -> {
+                val cleanAmount = cleanAmountString.toBigDecimal()
+                if (cleanAmount > BigDecimal(MAX_VALUE_APP_INVESTMENT)) {
+                    currencyFormat.format(cleanAmount.divide(BigDecimal(10)))
+                } else {
+                    currencyFormat.format(cleanAmount)
+                }
+            }
+        }
+
+        mutableAmountField.postValue(
+            FieldState(
+                value = value,
+                showError = false
             )
         )
+        postEnableActionButtonStatus(value, rawMaturityDate, rawCdiInvestment)
     }
 
+    //TODO [RenanLukas] Extract to separate class
     fun onMaturityDateChanged(
         rawMaturityDate: String, rawAmount: String, rawCdiInvestment: String
     ) {
-        val cleanAmountString = rawMaturityDate.replace(Regex("[^\\d]"), "")
-        val maturityDateStringBuilder = StringBuilder(cleanAmountString).apply {
-            val lastIndex = length - 1
-            if (length >= 2 && lastIndex != 1) {
-                insert(2, "/")
-            }
-            if (length >= 5 && lastIndex != 3) {
-                insert(5, "/")
-            }
-        }.toString().take(10)
+        val cleanMaturityDateString = rawMaturityDate.replace(Regex("[^\\d]"), "")
+        val value = buildMaturityDateString(cleanMaturityDateString)
 
-        with(maturityDateStringBuilder) {
+        with(value) {
             mutableMaturityDateField.postValue(
                 FieldState(
                     value = this,
-                    showError = this.isNotEmpty() && !dateFormat.isValid(
+                    showError = this.isNotBlank() && !dateFormat.isInFuture(
                         this,
                         DateFormat.Pattern.DayMonthYearSlash
                     )
                 )
             )
         }
-
-        mutableViewState.postValue(
-            SimulationChanged(
-                shouldEnableActionButton(
-                    rawAmount, rawMaturityDate, rawCdiInvestment
-                )
-            )
+        postEnableActionButtonStatus(
+            rawAmount,
+            value,
+            rawCdiInvestment
         )
     }
 
+    //TODO [RenanLukas] Extract to separate class
     fun onCdiInvestmentChanged(
         rawCdiInvestment: String, rawAmount: String, rawMaturityDate: String, isDeleting: Boolean
     ) {
-        val amountAfterDeleting = with(rawCdiInvestment) { if (isDeleting) dropLast(1) else this }
-        val cleanAmountString = amountAfterDeleting.replace(Regex("[^\\d]"), "")
-        val value = if (cleanAmountString.isNotEmpty()) {
-            val cleanAmount = cleanAmountString.toBigDecimal()
-            if (cleanAmount > BigDecimal(100)) {
-                percentFormat.format(cleanAmount.divide(BigDecimal(10), RoundingMode.DOWN))
+        val cdiInvestmentAfterDeleting =
+            with(rawCdiInvestment) { if (isDeleting) dropLast(1) else this }
+        val cleanCdiInvestmentString = cdiInvestmentAfterDeleting.replace(Regex("[^\\d]"), "")
+        val value = if (cleanCdiInvestmentString.isNotBlank()) {
+            val cleanCdiInvestment = cleanCdiInvestmentString.toBigDecimal()
+            if (cleanCdiInvestment > BigDecimal(100)) {
+                percentFormat.format(cleanCdiInvestment.divide(BigDecimal(10), RoundingMode.DOWN))
             } else {
-                percentFormat.format(cleanAmount)
+                percentFormat.format(cleanCdiInvestment)
             }
         } else ""
         mutableCdiInvestmentField.postValue(
@@ -168,18 +173,32 @@ class CreateSimulationViewModel @Inject constructor(
                 showError = false
             )
         )
-        mutableViewState.postValue(
-            SimulationChanged(
-                shouldEnableActionButton(
-                    rawAmount, rawMaturityDate, rawCdiInvestment
-                )
-            )
-        )
+        postEnableActionButtonStatus(rawAmount, rawMaturityDate, value)
     }
 
-    private fun shouldEnableActionButton(
+    private fun buildMaturityDateString(cleanMaturityDateString: String): String {
+        return StringBuilder(cleanMaturityDateString).apply {
+            val lastIndex = length - 1
+            if (length >= 2 && lastIndex != 1) {
+                insert(2, "/")
+            }
+            if (length >= 5 && lastIndex != 3) {
+                insert(5, "/")
+            }
+        }.toString().take(10)
+    }
+
+    private fun postEnableActionButtonStatus(
         rawAmount: String,
         rawMaturityDate: String,
         rawCdiInvestment: String
-    ) = rawAmount.isNotEmpty() && rawMaturityDate.isNotEmpty() && rawCdiInvestment.isNotEmpty()
+    ) = mutableViewState.postValue(
+        SimulationChanged(
+            rawAmount.isNotBlank() && rawMaturityDate.isNotBlank() && rawCdiInvestment.isNotBlank()
+        )
+    )
+
+    companion object {
+        internal const val MAX_VALUE_APP_INVESTMENT = 99999999
+    }
 }
