@@ -9,13 +9,13 @@ class PercentFormat @Inject constructor(private val localeProvider: LocaleProvid
 
     fun format(value: BigDecimal): String =
         try {
-            val percentageAmount = value / BigDecimal(100)
+            val percentageAmount = value.divide(BigDecimal(100))
             NumberFormat.getPercentInstance(localeProvider.getLocale()).format(percentageAmount)
-        } catch (throwable: Throwable) {
+        } catch (numberFormatException: NumberFormatException) {
             DEFAULT_FORMAT
         }
 
     companion object {
-        internal const val DEFAULT_FORMAT = "-"
+        internal const val DEFAULT_FORMAT = ""
     }
 }

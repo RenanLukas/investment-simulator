@@ -10,7 +10,7 @@ class GetSimulation @Inject constructor(
     private val simulationMapper: SimulationMapper
 ) {
 
-    fun execute(investedAmount: Double, rate: Int, maturityDate: String): Single<Simulation> =
+    fun execute(investedAmount: Double, maturityDate: String, rate: Int): Single<Simulation> =
         simulationRepository.getSimulation(
             SimulationRequest(
                 investedAmount,
@@ -20,7 +20,9 @@ class GetSimulation @Inject constructor(
                 maturityDate
             )
         ).map { simulationMapper map it }
-}
 
-private const val DEFAULT_SIMULATION_INDEX = "CDI"
-private const val DEFAULT_SIMULATION_IS_TAX_FREE = false
+    companion object {
+        internal const val DEFAULT_SIMULATION_INDEX = "CDI"
+        internal const val DEFAULT_SIMULATION_IS_TAX_FREE = false
+    }
+}

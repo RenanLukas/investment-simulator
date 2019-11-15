@@ -28,4 +28,7 @@ dependencies {
     implementation(Dependency.kotlinStdLib)
     implementation(Dependency.retrofitConverterGson)
     implementation(Dependency.retrofitAdapterRxJava)
+
+    testImplementation(TestDependency.junit)
+    testImplementation(TestDependency.mockk)
 }

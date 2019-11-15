@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.renanlukas.feature.core.di.CoreInjectHelper
 import com.renanlukas.feature.core.presentation.BaseViewModelFragment
 import com.renanlukas.feature.core.ui.MainButtonView
+import com.renanlukas.feature.core.ui.Text
 import com.renanlukas.feature.core.ui.colorText
 import com.renanlukas.feature.simulator.R
-import com.renanlukas.feature.simulator.di.create.DaggerSimulatorComponent
 import com.renanlukas.feature.simulator.di.overview.DaggerOverviewSimulationComponent
 import com.renanlukas.feature.simulator.domain.Simulation
 import com.renanlukas.feature.simulator.presentation.overview.OverviewSimulationViewState.Initial
@@ -37,8 +37,10 @@ class OverviewSimulationFragment : BaseViewModelFragment() {
             DaggerOverviewSimulationComponent
                 .builder()
                 .coreComponent(CoreInjectHelper.provideCoreComponent(it.applicationContext))
-                .simulation(arguments?.getParcelable(ARGUMENT_SIMULATION)
-                    ?: throw NullPointerException("Simulation argument is mandatory"))
+                .simulation(
+                    arguments?.getParcelable(ARGUMENT_SIMULATION)
+                        ?: throw NullPointerException("Simulation argument is mandatory")
+                )
                 .build()
                 .inject(this)
         }
@@ -63,7 +65,7 @@ class OverviewSimulationFragment : BaseViewModelFragment() {
 
     private fun buildInitial(state: Initial) {
         with(state) {
-            newSimulationButton.bind(MainButtonView.Entity(actionButtonLabel)) { viewModel.onNewSimulation() }
+            newSimulationButton.bind(MainButtonView.Entity(Text.Resource(actionButtonLabel))) { viewModel.onNewSimulation() }
             overviewSimulationTitle.text = getString(simulationTitle)
             overviewSimulationValue.text = simulationValue
             overviewSimulationTotalProfit.colorText(

@@ -1,8 +1,9 @@
 package com.renanlukas.feature.core.ui
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
-import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.renanlukas.investmentsimulator.feature.core.R
@@ -17,6 +18,7 @@ class TitleInputView @JvmOverloads constructor(
 
     private var titleTextColor: Int = 0
     private var inputHint: String = ""
+    private var textChangedListener: TextWatcher? = null
 
     init {
         inflate(context, R.layout.view_title_input, this)
@@ -25,9 +27,32 @@ class TitleInputView @JvmOverloads constructor(
         }
     }
 
+    fun bindInputValue(value: String) {
+        if (textChangedListener != null) input.removeTextChangedListener(textChangedListener)
+        input.setText(value)
+        input.setSelection(value.length)
+        if (textChangedListener != null) input.addTextChangedListener(textChangedListener)
+    }
+
     fun bind(entity: Entity) {
         bindTitle(entity)
         bindInput(entity)
+    }
+
+    fun inputText() = input.text.toString()
+
+    fun addTextChangedListener(callback: (String) -> Unit) {
+        textChangedListener =
+            object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {}
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    callback(s.toString())
+                }
+            }
+        input.addTextChangedListener(textChangedListener)
     }
 
     fun showError() {
@@ -40,13 +65,13 @@ class TitleInputView @JvmOverloads constructor(
 
     override fun onDetachedFromWindow() {
         input.onFocusChangeListener = null
+        textChangedListener = null
         super.onDetachedFromWindow()
     }
 
     private fun bindTitle(entity: Entity) {
         with(entity) {
-            val titleValue =
-                context.getString(titleValue) + if (isMandatory) MANDATORY_STRING else ""
+            val titleValue = titleValue.get(context) + if (isMandatory) MANDATORY_STRING else ""
             title.text = titleValue
             titleTextColor = title.currentTextColor
         }
@@ -54,15 +79,15 @@ class TitleInputView @JvmOverloads constructor(
 
     private fun bindInput(entity: Entity) {
         with(entity) {
-            input.hint = context.getString(hintValue)
+            input.hint = hintValue.get(context)
             input.inputType = inputType
             inputHint = input.hint.toString()
         }
     }
 
     data class Entity(
-        @StringRes val titleValue: Int,
-        @StringRes val hintValue: Int,
+        val titleValue: Text,
+        val hintValue: Text,
         val inputType: Int,
         val isMandatory: Boolean = false
     )

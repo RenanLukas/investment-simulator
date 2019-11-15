@@ -1,5 +1,7 @@
 package com.renanlukas.feature.simulator.presentation.create
 
+import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.renanlukas.feature.core.di.CoreInjectHelper
 import com.renanlukas.feature.core.presentation.BaseViewModelFragment
@@ -18,6 +20,52 @@ class CreateSimulationFragment : BaseViewModelFragment() {
     override val viewModel by viewModel<CreateSimulationViewModel> { viewModelFactory }
 
     override fun layoutResource() = R.layout.fragment_create_simulation
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAmountInput()
+        setupMaturityDateInput()
+        setupCdiInvestmentInput()
+    }
+
+    private fun setupAmountInput() {
+        simulationAmount.addTextChangedListener {
+            viewModel.onAmountChanged(
+                rawAmount = it,
+                rawMaturityDate = simulationMaturityDate.inputText(),
+                rawCdiInvestment = simulationCdiInvestment.inputText()
+            )
+        }
+        viewModel.amountField.observe(viewLifecycleOwner, Observer {
+            simulationAmount.bindInputValue(it)
+        })
+    }
+
+    private fun setupMaturityDateInput() {
+        simulationMaturityDate.addTextChangedListener {
+            viewModel.onMaturityDateChanged(
+                rawMaturityDate = it,
+                rawAmount = simulationAmount.inputText(),
+                rawCdiInvestment = simulationCdiInvestment.inputText()
+            )
+        }
+        viewModel.maturityDateField.observe(viewLifecycleOwner, Observer {
+            simulationMaturityDate.bindInputValue(it)
+        })
+    }
+
+    private fun setupCdiInvestmentInput() {
+        simulationCdiInvestment.addTextChangedListener {
+            viewModel.onCdiInvestmentChanged(
+                rawCdiInvestment = it,
+                rawAmount = simulationAmount.inputText(),
+                rawMaturityDate = simulationMaturityDate.inputText()
+            )
+        }
+        viewModel.cdiInvestmentField.observe(viewLifecycleOwner, Observer {
+            simulationCdiInvestment.bindInputValue(it)
+        })
+    }
 
     override fun inject() {
         activity?.let {
@@ -45,9 +93,13 @@ class CreateSimulationFragment : BaseViewModelFragment() {
             simulationAmount.bind(amountViewEntity)
             simulationMaturityDate.bind(maturityViewEntity)
             simulationCdiInvestment.bind(cdiViewEntity)
-            simulateButton.bind(MainButtonView.Entity(actionButtonLabel)) {
+            simulateButton.bind(MainButtonView.Entity(Text.Resource(actionButtonLabel))) {
                 activity?.hideKeyboard()
-                viewModel.onSimulate()
+                viewModel.onSimulate(
+                    amount = simulationAmount.inputText(),
+                    maturityDate = simulationMaturityDate.inputText(),
+                    cdiInvestment = simulationCdiInvestment.inputText()
+                )
             }
         }
         updateSimulateButton(state.enableAction)

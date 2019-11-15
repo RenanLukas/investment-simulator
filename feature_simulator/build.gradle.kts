@@ -18,4 +18,8 @@ dependencies {
     api(project(Module.featureCore))
     implementation(Dependency.constraintLayout)
     implementation(Dependency.recyclerView)
+
+    testImplementation(TestDependency.junit)
+    testImplementation(TestDependency.mockk)
+    testImplementation(TestDependency.archCoreTesting)
 }

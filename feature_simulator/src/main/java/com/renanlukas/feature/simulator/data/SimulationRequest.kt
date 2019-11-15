@@ -1,6 +1,6 @@
 package com.renanlukas.feature.simulator.data
 
-class SimulationRequest(
+data class SimulationRequest(
     val investedAmount: Double,
     val index: String,
     val rate: Int,

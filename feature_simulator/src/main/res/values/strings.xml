@@ -1,6 +1,5 @@
 <resources>
     <string name="simulator_investment_amount_title">Quanto você gostaria de aplicar?</string>
-    <string name="simulator_investment_amount_hint">R$</string>
     <string name="simulator_investment_maturity_date_title">Qual a data de vencimento do investimento?</string>
     <string name="simulator_investment_maturity_date_hint">dia/mês/ano</string>
     <string name="simulator_investment_cdi_percentage_title">Qual o percentual do CDI do investimento?</string>
