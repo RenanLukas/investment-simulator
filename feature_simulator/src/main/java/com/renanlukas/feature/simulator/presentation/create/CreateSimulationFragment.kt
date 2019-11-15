@@ -29,41 +29,46 @@ class CreateSimulationFragment : BaseViewModelFragment() {
     }
 
     private fun setupAmountInput() {
-        simulationAmount.addTextChangedListener {
+        simulationAmount.addTextChangedListener { text, isDeleting ->
             viewModel.onAmountChanged(
-                rawAmount = it,
+                rawAmount = text,
                 rawMaturityDate = simulationMaturityDate.inputText(),
-                rawCdiInvestment = simulationCdiInvestment.inputText()
+                rawCdiInvestment = simulationCdiInvestment.inputText(),
+                isDeleting = isDeleting
             )
         }
         viewModel.amountField.observe(viewLifecycleOwner, Observer {
-            simulationAmount.bindInputValue(it)
+            simulationAmount.bindInputValue(it.value)
         })
     }
 
     private fun setupMaturityDateInput() {
-        simulationMaturityDate.addTextChangedListener {
+        simulationMaturityDate.addTextChangedListener { text, _ ->
             viewModel.onMaturityDateChanged(
-                rawMaturityDate = it,
+                rawMaturityDate = text,
                 rawAmount = simulationAmount.inputText(),
                 rawCdiInvestment = simulationCdiInvestment.inputText()
             )
         }
-        viewModel.maturityDateField.observe(viewLifecycleOwner, Observer {
-            simulationMaturityDate.bindInputValue(it)
+        viewModel.maturityDateField.observe(viewLifecycleOwner, Observer { (input, showError) ->
+            with(simulationMaturityDate) {
+                bindInputValue(input)
+                if (showError) showError() else hideError()
+            }
         })
     }
 
     private fun setupCdiInvestmentInput() {
-        simulationCdiInvestment.addTextChangedListener {
+        simulationCdiInvestment.addTextChangedListener { text, isDeleting ->
             viewModel.onCdiInvestmentChanged(
-                rawCdiInvestment = it,
+                rawCdiInvestment = text,
                 rawAmount = simulationAmount.inputText(),
-                rawMaturityDate = simulationMaturityDate.inputText()
+                rawMaturityDate = simulationMaturityDate.inputText(),
+                isDeleting = isDeleting
             )
         }
         viewModel.cdiInvestmentField.observe(viewLifecycleOwner, Observer {
-            simulationCdiInvestment.bindInputValue(it)
+            simulationCdiInvestment.bindInputValue(it.value)
         })
     }
 

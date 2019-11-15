@@ -18,10 +18,25 @@ Implementação do aplicativo proposto [neste repositório](https://github.com/e
 * [Retrofit](https://square.github.io/retrofit/)
 * [OkHttp](https://square.github.io/okhttp/)
 * [Material Components for Android](https://material.io/develop/android/docs/getting-started/)
-* [Barista](https://github.com/AdevintaSpain/Barista)
+* [Barista](https://github.com/AdevintaSpain/Barista) - ver TODO
 * [Mockk](https://github.com/mockk/mockk)
 
 ##### **TODO**
-- Extrair lógica de resultado da simulação (`com.renanlukas.feature.simulator.presentation.overview`) para um módulo separado.
+- Incluir test cases de UI:
+    - Botão de simular habilitado depois de todos os campos preenchidos;
+    - Considerando botão de simular habilitado: botão de simular desabilitado se algum campo estiver vazio;
+    - Considerando sucesso ao chamar o endpoint de criar simulação: Botão de simular abre a tela de detalhes da simulação;
+    - Botão de "Simular novamente" abre a tela de criação de simulação.
 
-- Extrair Views customizadas (`com.renanlukas.investmentsimulator.presentation`) para um módulo separado.
+
+- Incluir unit tests para o ViewModel de criação de simulação;
+
+- Incluir animação de slide na transição entre telas de criação de simulação e detalhes de simulação;
+
+- Bloquear botão de "Simular" caso um dos campos tenha um erro;
+
+- Extrair lógica de observação dos EditTexts no CreateSimulationViewModel para classes separadas;
+
+- Extrair lógica de resultado da simulação (`com.renanlukas.feature.simulator.presentation.overview`) para um módulo separado;
+
+- Extrair Views customizadas (`com.renanlukas.investmentsimulator.presentation`) para um módulo separado;

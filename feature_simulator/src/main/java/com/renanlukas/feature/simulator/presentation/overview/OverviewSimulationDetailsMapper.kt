@@ -64,7 +64,7 @@ class OverviewSimulationDetailsMapper @Inject constructor(
     private fun mapMaturityDate(maturityDate: Date): DescriptionValueView.Entity =
         DescriptionValueView.Entity(
             description = R.string.overview_simulation_maturity_date,
-            value = dateFormat.format(maturityDate.time, DateFormat.Pattern.DD_MM_YYYY)
+            value = dateFormat.format(maturityDate.time, DateFormat.Pattern.DayMonthYearSlash)
         )
 
     private fun mapMaturityTotalDays(maturityTotalDays: Int): DescriptionValueView.Entity =

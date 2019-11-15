@@ -16,9 +16,10 @@ class TitleInputView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private var titleTextColor: Int = 0
     private var inputHint: String = ""
     private var textChangedListener: TextWatcher? = null
+
+    private var currentInputLength = 0
 
     init {
         inflate(context, R.layout.view_title_input, this)
@@ -31,6 +32,7 @@ class TitleInputView @JvmOverloads constructor(
         if (textChangedListener != null) input.removeTextChangedListener(textChangedListener)
         input.setText(value)
         input.setSelection(value.length)
+        currentInputLength = value.length
         if (textChangedListener != null) input.addTextChangedListener(textChangedListener)
     }
 
@@ -41,16 +43,19 @@ class TitleInputView @JvmOverloads constructor(
 
     fun inputText() = input.text.toString()
 
-    fun addTextChangedListener(callback: (String) -> Unit) {
+    fun addTextChangedListener(callback: (String, Boolean) -> Unit) {
         textChangedListener =
             object : TextWatcher {
-                override fun afterTextChanged(p0: Editable?) {}
-
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-                override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    callback(s.toString())
+                override fun afterTextChanged(editable: Editable?) {
+                    callback(editable.toString(), editable.toString().length < currentInputLength)
                 }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?, start: Int, count: Int, after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             }
         input.addTextChangedListener(textChangedListener)
     }
@@ -60,7 +65,7 @@ class TitleInputView @JvmOverloads constructor(
     }
 
     fun hideError() {
-        title.setTextColor(ContextCompat.getColor(context, titleTextColor))
+        title.setTextColor(ContextCompat.getColor(context, R.color.textDefault))
     }
 
     override fun onDetachedFromWindow() {
@@ -73,7 +78,6 @@ class TitleInputView @JvmOverloads constructor(
         with(entity) {
             val titleValue = titleValue.get(context) + if (isMandatory) MANDATORY_STRING else ""
             title.text = titleValue
-            titleTextColor = title.currentTextColor
         }
     }
 

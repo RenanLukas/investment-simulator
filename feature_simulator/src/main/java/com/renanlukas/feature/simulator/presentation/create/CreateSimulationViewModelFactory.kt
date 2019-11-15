@@ -11,14 +11,14 @@ import javax.inject.Inject
 class CreateSimulationViewModelFactory @Inject constructor(
     private val getSimulation: GetSimulation,
     private val currencyFormat: CurrencyFormat,
-    private val dateFormat: DateFormat,
-    private val percentFormat: PercentFormat
+    private val percentFormat: PercentFormat,
+    private val dateFormat: DateFormat
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (modelClass.isAssignableFrom(CreateSimulationViewModel::class.java)) {
-            CreateSimulationViewModel(getSimulation, currencyFormat, dateFormat, percentFormat) as T
+            CreateSimulationViewModel(getSimulation, currencyFormat, percentFormat, dateFormat) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")
         }

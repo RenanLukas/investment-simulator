@@ -10,7 +10,7 @@ abstract class BaseViewModel : ViewModel() {
 
     abstract fun initialize()
 
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
+    val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun onCleared() {
         compositeDisposable.dispose()

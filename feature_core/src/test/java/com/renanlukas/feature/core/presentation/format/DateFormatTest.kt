@@ -21,7 +21,7 @@ class DateFormatTest {
 
     @Test
     fun `should format date with valid timestamp and pattern`() {
-        val expected = classToTest.format(1573753952000L, DateFormat.Pattern.DD_MM_YYYY)
+        val expected = classToTest.format(1573753952000L, DateFormat.Pattern.DayMonthYearSlash)
         assertEquals(expected, "14/11/2019")
     }
 }
