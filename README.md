@@ -2,7 +2,9 @@
 
 Implementação do aplicativo proposto [neste repositório](https://github.com/easynvest/teste-android).
 
-![Alt text](create_simulation.png?raw=true)
+![Alt text](create_simulation.png)
+![Alt text](overview_top.png)
+![Alt text](overview_bottom.png)
 
 ## Módulos
 **app**: Activity única e navegação.  
